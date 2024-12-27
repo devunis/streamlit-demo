@@ -2,13 +2,13 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 
+# streamlit examples
 st.header("This is a header")
 st.subheader("This is a subheader")
 st.title("Title : Streamlit Example ")
 st.write("Here's our first attempt at using data to create a table:")
 
 "hello, world! with not st.write"
-
 "**bold text**"
 
 # seoul map
