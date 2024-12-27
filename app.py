@@ -18,7 +18,7 @@ data = [
 
 # Initialization
 try:
-    with open("seats.csv", "r") as f:
+    with open("/csv/seats.csv", "r") as f:
         data = [x.strip().split(",") for x in f.readlines()]
 except FileNotFoundError:
     st.error("불러오기 실패")
@@ -42,7 +42,7 @@ if st.button("자리 배치도 업데이트"):
     data.append(editor1.values.tolist()[1] + editor2.values.tolist()[1] + editor3.values.tolist()[1])
     data.append(editor1.values.tolist()[2] + editor2.values.tolist()[2] + editor3.values.tolist()[2])
     # export with csv
-    with open("seats.csv", "w") as f:
+    with open("/csv/seats.csv", "w") as f:
         for line in data:
             f.write(",".join(line) + "\n")
 
@@ -50,7 +50,7 @@ if st.button("자리 배치도 업데이트"):
     st.success("자리 배치도가 업데이트 되었습니다.")
 
 try:
-    with open("attendance.csv", "r") as f:
+    with open("/csv/attendance.csv", "r") as f:
         df = pd.read_csv(f)
 except FileNotFoundError:
     st.error("불러오기 실패")
@@ -72,7 +72,7 @@ df["출석률"] = df["출석인원"] / df["총원"] * 100
 st.dataframe(df, use_container_width=True)
 st.line_chart(df.set_index("날짜")[['출석인원', '결석인원', '조퇴인원', '지각인원']])
 
-with open("attendance.csv", "w") as f:
+with open("/csv/attendance.csv", "w") as f:
     f.write("날짜,총원,출석인원,결석인원,조퇴인원,지각인원,출석률\n")
     for line in df.values:
         f.write(",".join(map(str, line)) + "\n")
